@@ -5,11 +5,21 @@ import os
 import hashlib
 import time
 import shutil
+import schedule
 
 # Define a temporary directory to store deleted files
 TEMP_DIR = r"C:\backup\Python\Deleted_files"
 deleted_history = r"C:\backup\Python\Deleted_files\deleted_history.txt"
 
+def create_trash_directory():
+    if not os.path.exists(TEMP_DIR):
+        os.makedirs(TEMP_DIR)
+
+def move_to_trash(file_path):                  
+    new_path = os.path.join(TEMP_DIR, os.path.basename(file_path))
+    # deleted_files.append(subresult)
+    shutil.move(file_path,new_path)  
+    print("Deleted File Path is: ",file_path)
 def DeleteFiless(dict1):
     results = list(filter(lambda x:len(x)>1, dict1.values()))
 
@@ -24,13 +34,8 @@ def DeleteFiless(dict1):
                 if icnt >= 2:
                     # os.remove(subresult)
                     try:
-                        if not os.path.exists(TEMP_DIR):
-                            os.makedirs(TEMP_DIR)
-                        
-                        new_path = os.path.join(TEMP_DIR, os.path.basename(subresult))
+                        move_to_trash(subresult)
                         deleted_files.append(subresult)
-                        shutil.move(subresult,new_path)  
-                        print("Deleted File Path is: ",subresult)
                     except shutil.Error as e:
                         print(f"Shutil Error moving {subresult}: {str(e)}")
                     except FileNotFoundError as e:
@@ -167,11 +172,16 @@ def main():
         print("Error : Invalid input", E)
 
     # Ask the user if they want to undo the deletion
-    user_choice = input("Do you want to undo the deletion? (yes/no): ")
+    user_choice = input("Do you want to schedule regular cleanup? (yes/no): ")
     if user_choice.lower() == "yes":
-        UndoDelete()
+        # Schedule the cleanup task to run daily at a specific time
+        schedule.every().day.at("00:00").do(UndoDelete)
+        print("Schedule daily cleanup at 00:00.")
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
     else:
-        print("Deletion not undone")
+        print("Scheduled cleanup not enabled.")
 
 if __name__ == "__main__":
     main()

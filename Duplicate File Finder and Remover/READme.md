@@ -1,17 +1,17 @@
-Program Title: Duplicate File Finder and Remover
+Project Summary: Automated Duplicate File Removal with Scheduling
 
-Summary:
+This Python automation script allows users to clean up duplicate files within a specified directory. It offers the following key features:
 
-The "Duplicate File Finder and Remover" is a Python-based utility that helps users identify and eliminate duplicate files within a specified directory. It offers a user-friendly command-line interface and several useful features:
+1. Duplicate File Detection: The script traverses the user-specified directory, calculates the MD5 hash of each file, and identifies duplicate files based on their hash values.
 
-Duplication Detection: The program scans the chosen directory and its subdirectories to identify duplicate files based on their content. It uses MD5 hash checksums to accurately pinpoint identical files.
+2. Duplicate File Removal: Identified duplicate files are moved to a designated temporary directory, keeping only one copy in the original location. The path of each deleted file is logged in a history file.
 
-Deletion or Backup: Users have the option to either delete duplicate files, freeing up valuable disk space, or back them up to a designated temporary directory for review before removal.
+3. Undo Functionality: Users can choose to undo the file deletions. The script moves the previously deleted files back to their original locations and updates the history file accordingly.
 
-Undo Functionality: The program maintains a history of deleted files, allowing users to undo deletions if needed, restoring files to their original locations.
+4. Scheduled Cleanup: Users can opt to schedule regular cleanup tasks. The script employs the schedule library to run the cleanup at a specified time daily.
 
-Configurability: Users can configure settings such as the location of the temporary directory, file extensions to consider, and whether to keep a log of deleted files.
+This project is designed to help users efficiently manage their files by removing duplicates and can be a valuable addition to file management workflows.
 
-Informative Output: The program provides informative messages and progress indicators during its execution, enhancing user confidence and understanding..
 
-The "Duplicate File Finder and Remover" simplifies the process of decluttering and optimizing storage space by efficiently identifying and managing duplicate files within a directory.
+
+
