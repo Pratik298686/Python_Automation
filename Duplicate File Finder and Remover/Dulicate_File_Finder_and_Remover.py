@@ -8,8 +8,8 @@ import shutil
 import schedule
 
 # Define a temporary directory to store deleted files
-TEMP_DIR = r"C:\backup\Python\Deleted_files"
-deleted_history = r"C:\backup\Python\Deleted_files\deleted_history.txt"
+TEMP_DIR = r"C:\backup\Python\Testing folder\Deleted_files"
+deleted_history = r"C:\backup\Python\Testing folder\Deleted_files\deleted_history.txt"
 
 def create_trash_directory():
     if not os.path.exists(TEMP_DIR):
