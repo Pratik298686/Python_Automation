@@ -1,4 +1,3 @@
-# Automation script which accept directory name from user and remove duplicate files from that directory
 
 from sys import *
 import os
